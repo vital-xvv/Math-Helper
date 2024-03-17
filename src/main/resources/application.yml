@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
+
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DB}?useSSL=false
+    password: ${MYSQL_DB_PASSWORD}
+    username: ${MYSQL_DB_USERNAME}
+
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
+
+server:
+  port: ${SERVER_PORT}

@@ -1,0 +1,25 @@
+CREATE SCHEMA IF NOT EXISTS math_helper;
+
+SET NAMES 'UTF8MB4';
+
+USE math_helper;
+
+
+DROP TABLE IF EXISTS Roots;
+CREATE TABLE Roots
+(
+    id          BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    value       DECIMAL(20,4),
+    CONSTRAINT  UQ_ROOTS_VALUE UNIQUE(value)
+);
+
+DROP TABLE IF EXISTS Expressions;
+CREATE TABLE Expressions
+(
+    id                    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    root_id               BIGINT UNSIGNED DEFAULT NULL,
+    expression_text       VARCHAR(100) NOT NULL,
+    FOREIGN KEY (root_id) REFERENCES Roots(id) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT  UQ_EXPRESSIONS UNIQUE(expression_text)
+);
+
